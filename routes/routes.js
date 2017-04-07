@@ -1,3 +1,6 @@
+var Chance = require("chance");
+var chance = new Chance();
+
 var appRouter = function(app) {
 
 app.get("/", function(req, res) {
@@ -5,18 +8,22 @@ app.get("/", function(req, res) {
 });
 
 app.get("/account", function(req, res) {
+
+    var gen_name = chance.name()
+    var gen_pass = chance.string()
+
     var accountMock = {
-        "username": "nraboy",
-        "password": "1234",
-        "twitter": "@nraboy"
+        "username": gen_name,
+        "password": gen_pass,
+        "twitter": "@"+gen_name
     }
-    if(!req.query.username) {
-        return res.send({"status": "error", "message": "missing username"});
-    } else if(req.query.username != accountMock.username) {
-        return res.send({"status": "error", "message": "wrong username"});
-    } else {
+    // if(!req.query.username) {
+    //     return res.send({"status": "error", "message": "missing username"});
+    // } else if(req.query.username != accountMock.username) {
+    //     return res.send({"status": "error", "message": "wrong username"});
+    // } else {
         return res.send(accountMock);
-    }
+    // }
 });
 
 // app.post("/account", function(req, res) {
