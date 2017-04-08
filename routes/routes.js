@@ -9,13 +9,16 @@ app.get("/", function(req, res) {
 
 app.get("/account", function(req, res) {
 
-    var gen_name = chance.name()
-    var gen_pass = chance.string()
+    var gen_name = chance.name();
+    var gen_pass = chance.string();
 
     var accountMock = {
-        "username": gen_name,
-        "password": gen_pass,
-        "twitter": "@"+gen_name
+
+        "user_account": {
+            "username": gen_name,
+            "password": gen_pass,
+            "twitter": "@"+gen_name
+        }
     }
     // if(!req.query.username) {
     //     return res.send({"status": "error", "message": "missing username"});
